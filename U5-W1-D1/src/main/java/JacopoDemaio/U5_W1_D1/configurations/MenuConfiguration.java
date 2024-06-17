@@ -1,9 +1,6 @@
 package JacopoDemaio.U5_W1_D1.configurations;
 
-import JacopoDemaio.U5_W1_D1.entities.Drink;
-import JacopoDemaio.U5_W1_D1.entities.Menu;
-import JacopoDemaio.U5_W1_D1.entities.Pizza;
-import JacopoDemaio.U5_W1_D1.entities.Toppings;
+import JacopoDemaio.U5_W1_D1.entities.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -80,6 +77,15 @@ public class MenuConfiguration {
     }
 
     @Bean
+    public PizzaXL margheritaPizzaXl(){
+//        quindi andiamo a creare una nuova lista e aggiungeremo un topping alla volta, questo è possibile grazie ai bean creati prima
+        List<Toppings> margheritaToppings = new ArrayList<>();
+        margheritaToppings.add(tomatoTopping());
+        margheritaToppings.add(cheeseTopping());
+        return  new PizzaXL(1104,4.99,"Pizza Margherita",margheritaToppings);
+    }
+
+    @Bean
     public Pizza hawaiianPizza(){
         List<Toppings> hawaiianToppings = new ArrayList<>();
         hawaiianToppings.add(tomatoTopping());
@@ -128,6 +134,7 @@ public class MenuConfiguration {
         pizzaList.add(hawaiianPizza());
         pizzaList.add(salamiPizza());
         pizzaList.add(doppiaPizza());
+        pizzaList.add(margheritaPizzaXl());
 
         toppingsList.add(tomatoTopping());
         toppingsList.add(hamTopping());
