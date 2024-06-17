@@ -6,6 +6,7 @@ import JacopoDemaio.U5_W1_D1.entities.Pizza;
 import JacopoDemaio.U5_W1_D1.entities.Toppings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,6 +117,7 @@ public class MenuConfiguration {
 //    come attributi sappiamo che il nostro menu vuole tre liste differenti
 
     @Bean
+    @Primary // <--- qui provo l'annotazione primary --- ha una funzione di default
     public Menu menuBean(){
 //        andiamo a creare le 3 liste differenti
         List<Pizza> pizzaList = new ArrayList<>();
@@ -136,6 +138,16 @@ public class MenuConfiguration {
         drinkList.add(lemonadeDrink());
         drinkList.add(waterDrink());
         drinkList.add(wineDrink());
+
+        return new Menu(toppingsList,pizzaList,drinkList);
+    }
+
+//    prova per capire il primary
+    @Bean
+    public Menu menu2(){
+        List<Pizza> pizzaList = new ArrayList<>();
+        List<Toppings> toppingsList = new ArrayList<>();
+        List<Drink> drinkList = new ArrayList<>();
 
         return new Menu(toppingsList,pizzaList,drinkList);
     }
